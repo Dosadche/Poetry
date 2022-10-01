@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "observable-practice:build:production",
+            "firebaseProject": "site-of-art-named-poetry",
+            "firebaseHostingSite": "site-of-art-named-poetry"
+          }
         }
       }
     }

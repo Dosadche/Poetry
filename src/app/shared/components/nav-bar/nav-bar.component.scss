@@ -1,0 +1,65 @@
+@import "../../../../assets/styles/variables.scss";
+
+.container{
+    height: 100%;
+    background: linear-gradient(257.64deg, #121212 2.45%, #212121 111.67%);
+    color: $white-color;
+    mat-drawer{
+        background-color: #292929;
+        color: $white-color;
+        width: 230px;
+        .nav_bar{
+            margin: 32px 0;
+            &_user_info{
+                margin-left: 32px;
+            }
+            &_user_info{
+                display: flex;
+                &_avatar{
+                    height: 48px;
+                }
+                &_cred{
+                    margin-left: 16px;
+                    font-size: 20px;
+                    line-height: 23px;
+                }
+            }
+            &_list{
+                margin-top: 23px;
+                list-style: none;
+                padding: 0;
+                &_item{
+                    padding: 9px 0 9px 32px;
+                    display: flex;
+                    align-items: center;
+                    transition: all 0.14s ease-in;
+                    &:hover{
+                      background-color: #393838;  
+                      cursor: pointer;
+                    }
+                    mat-icon{
+                        height: 32px;
+                        width: 32px;
+                        font-size: 32px;
+                    }
+                    span{
+                        margin-left: 18px;
+                        font-weight: 500;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .log-out-button{
+            width: 112px;
+            height: 45px;
+            border: 1px solid $main-color;
+            border-radius: 16px;
+            position: absolute;
+            bottom: 32px;
+            margin-left: 32px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+@import "../../../../assets/styles/variables.scss";
+.sign_up{
+    width: 600px;
+    height: 488px;
+    padding: 0;
+    border-radius: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(246.04deg, #121212 0%, #222222 100%);
+    color: $white-color;
+    ::ng-deep {
+        .mat-card-header .mat-card-title{
+            margin-top: 48px;
+            font-size: 36px;
+        }
+        .mat-card-header-text{
+            width: 100%;
+            text-align: center;
+        }
+        .mat-form-field-appearance-legacy .mat-form-field-underline{
+            display: none;
+        }
+        .mat-form-field-infix{
+            border-top: none;
+            margin: 8px 22px;
+        }
+    }
+    .sign_up_form{
+        padding: 48px;
+        &_input_field{
+            height: 55px;
+            background-color: #2A2A2A;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            font-size: 20px;
+            color: $white-color;
+            &.half-width{
+                width: 236px;
+                &.surname{
+                    float: right;
+                }
+            }
+            ::placeholder, mat-label{
+                color: rgba($white-color, 0.67)
+            } 
+        }
+        &_actions{
+            display: flex;
+            align-items: center;
+            button{
+                width: 112px;
+                height: 45px;
+                margin-left: auto;
+                border-radius: 16px;
+                font-size: 20px;
+            }
+        }
+    }
+}

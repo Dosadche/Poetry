@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "site-of-art-named-poetry"
+  },
+  "targets": {
+    "site-of-art-named-poetry": {
+      "hosting": {
+        "observable-practice": [
+          "site-of-art-named-poetry"
+        ]
+      }
+    }
+  }
+}

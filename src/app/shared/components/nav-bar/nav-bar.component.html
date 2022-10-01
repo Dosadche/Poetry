@@ -1,0 +1,36 @@
+<mat-drawer-container class="container">
+    <mat-drawer mode="side" opened>
+        <nav class="nav_bar">
+            <div class="nav_bar_user_info">
+                <img class="nav_bar_user_info_avatar" src={{currentUser.avatarUrl}} alt="">
+                <span class="nav_bar_user_info_cred">
+                    {{currentUser.name}}<br>
+                    {{currentUser.surname}}
+                </span>
+            </div>
+            <ul class="nav_bar_list">
+                <li class="nav_bar_list_item">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Profile</span>
+                </li>
+                <li class="nav_bar_list_item">
+                    <mat-icon>view_agenda</mat-icon>
+                    <span>Feed</span>
+                </li>
+                <li class="nav_bar_list_item">
+                    <mat-icon>search</mat-icon>
+                    <span>Search</span>
+                </li>
+                <li class="nav_bar_list_item">
+                    <mat-icon>settings</mat-icon>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </nav>
+        <button class="log-out-button" mat-stroked-button color="primary" (click)="logOut()">Log Out</button>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
+

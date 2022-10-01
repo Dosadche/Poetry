@@ -1,0 +1,91 @@
+@use "@angular/material" as mat;
+@import "@angular/material/theming";
+@import "variables";
+@include mat.core();
+
+$primary-palette: (
+ 50: $main-color,
+ 100: $main-color,
+ 200: $main-color,
+ 300: $main-color,
+ 400: $main-color,
+ 500: $main-color,
+ 600: $main-color,
+ 700: $main-color,
+ 800: $main-color,
+ 900: $main-color,
+ contrast: (
+   50: $white-color,
+   100: $white-color,
+   200: $white-color,
+   300: $white-color,
+   400: $white-color,
+   500: $white-color,
+   600: $white-color,
+   700: $white-color,
+   800: $white-color,
+   900: $white-color,
+ )
+);
+$secondary-palette: (
+ 50: $secondary-color,
+ 100: $secondary-color,
+ 200: $secondary-color,
+ 300: $secondary-color,
+ 400: $secondary-color,
+ 500: $secondary-color,
+ 600: $secondary-color,
+ 700: $secondary-color,
+ 800: $secondary-color,
+ 900: $secondary-color,
+ contrast: (
+   50: $white-color,
+   100: $white-color,
+   200: $white-color,
+   300: $white-color,
+   400: $white-color,
+   500: $white-color,
+   600: $white-color,
+   700: $white-color,
+   800: $white-color,
+   900: $white-color,
+ )
+);
+$warn-palette: (
+ 50: $warn-color,
+ 100: $warn-color,
+ 200: $warn-color,
+ 300: $warn-color,
+ 400: $warn-color,
+ 500: $warn-color,
+ 600: $warn-color,
+ 700: $warn-color,
+ 800: $warn-color,
+ 900: $warn-color,
+ contrast: (
+   50: $white-color,
+   100: $white-color,
+   200: $white-color,
+   300: $white-color,
+   400: $white-color,
+   500: $white-color,
+   600: $white-color,
+   700: $white-color,
+   800: $white-color,
+   900: $white-color,
+ )
+);
+
+$custom-theme-primary: mat.define-palette($primary-palette, 500);
+$custom-theme-accent: mat.define-palette($secondary-palette, 500);
+$custom-theme-warn: mat.define-palette($warn-palette, 500);
+
+$custom-theme: mat.define-light-theme((
+    color: (
+        primary: $custom-theme-primary,
+        accent: $custom-theme-accent,
+        warn: $custom-theme-warn
+    )
+));
+
+@include mat.all-component-themes($custom-theme);

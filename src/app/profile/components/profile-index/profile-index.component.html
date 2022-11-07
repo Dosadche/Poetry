@@ -1,1 +1,16 @@
-<p>profile-index works!</p>
+<section class="profile">
+    <img src={{currentUser.avatarUrl}} class="profile_avatar">
+    <div class="profile_user_data">
+        <h2 class="profile_user_data_name">{{currentUser.name}} {{currentUser.surname}}</h2>
+        <div class="profile_user_data_actions">
+            <button mat-stroked-button color="primary" class="profile_user_data_edit">Edit profile</button>
+            <button mat-flat-button color="primary" class="profile_user_data_upload"
+            >Upload avatar</button>
+            <!-- <input #inputFile type="file" class="input-file"
+            (change)="chooseFile($event)" /> -->
+        </div>
+    </div>
+</section>
+<section class="posts">
+    <p>You have no posts yet :(</p>
+</section>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from '../../auth.service';
 
@@ -9,20 +10,27 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
+  isLoading = false
   signUpForm = new FormGroup({
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl('')
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required)
   })
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private _location: Location) { }
 
   ngOnInit(): void {}
 
-  public onSubmit(){
+  onSubmit(){
+    this.isLoading = true
     const newUser = new User(this.signUpForm.value)
     this.authService.handleRegister(newUser)
+  }
+
+  goBack(){
+    this._location.back()
   }
 
 }

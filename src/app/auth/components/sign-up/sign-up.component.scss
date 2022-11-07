@@ -48,11 +48,10 @@
         }
         &_actions{
             display: flex;
-            align-items: center;
+            justify-content: space-between;
             button{
                 width: 112px;
                 height: 45px;
-                margin-left: auto;
                 border-radius: 16px;
                 font-size: 20px;
             }

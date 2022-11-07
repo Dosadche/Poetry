@@ -10,3 +10,16 @@ body {
 .full-width{
     width: 100%;
 }
+form{
+    .mat-form-field-appearance-legacy .mat-form-field-label{
+        color: rgba($white-color, 0.67)
+    }
+    .mat-flat-button.mat-primary.mat-button-disabled{
+        background-color: rgba($main-color, 0.4)
+    }
+}
+mat-spinner{
+    border-radius: 50%;
+    top: 25%;
+    margin: auto;
+}

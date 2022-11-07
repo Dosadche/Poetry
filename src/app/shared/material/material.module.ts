@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon'
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 const exportedModules = [
   MatTabsModule,
@@ -17,7 +19,8 @@ const exportedModules = [
   MatInputModule,
   MatSidenavModule,
   MatIconModule,
-  MatDialogModule
+  MatDialogModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({

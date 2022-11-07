@@ -33,9 +33,15 @@
                     display: flex;
                     align-items: center;
                     transition: all 0.14s ease-in;
+                    color: rgba($white-color, 0.7);
+                    outline: none;
                     &:hover{
-                      background-color: #393838;  
+                      background-color: rgba(#393838, 0.6);  
                       cursor: pointer;
+                    }
+                    &.active{
+                        background-color: #393838;
+                        color: rgba($white-color, 1.0);
                     }
                     mat-icon{
                         height: 32px;

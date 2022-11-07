@@ -1,22 +1,23 @@
-<mat-card class="sign_in">
+<mat-card *ngIf="!isLoading" class="sign_in">
     <mat-card-header class="sign_in_title">
         <mat-card-title>Access Poetry</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <form class="sign_in_form" [formGroup]="signInForm" (submit)="onSubmit()">
             <mat-form-field class="full-width sign_in_form_input_field">
-              <mat-label>Email *</mat-label>
+              <mat-label>Email</mat-label>
               <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
             </mat-form-field>
             <mat-form-field class="full-width sign_in_form_input_field">
-                <mat-label>Password *</mat-label>
+                <mat-label>Password</mat-label>
                 <input formControlName="password" type="password" matInput>
             </mat-form-field>
             <div class="sign_in_form_actions">
                 <p class="sign_up_text">Don’t have account yet? <a routerLink="/sign-up">Sing Up</a></p>
-                <button mat-flat-button color="primary">Sign In</button>
+                <button [disabled]="signInForm.invalid" mat-flat-button color="primary">Sign In</button>
             </div>
         </form>
     </mat-card-content>
 </mat-card>
+<mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
 <img class="say_hello" src="../../../../assets/images/say-hello.svg" alt="">

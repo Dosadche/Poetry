@@ -1,0 +1,35 @@
+@import "../../../../assets/styles/variables.scss";
+.profile{
+    display: flex;
+    padding: 32px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(to right, #292929, #2E2E2E) 1;
+    &_avatar{
+        float: left;
+        height: 160px;
+        width: 160px;
+        padding-right: 32px;
+    }
+    &_user_data{
+        margin: auto 0;
+        &_name{
+            font-size: 32px;
+        }
+        &_actions{
+            margin-top: 28px;
+            justify-content: flex-end;
+            button{
+                font-size: 16px;
+                border-radius: 16px;
+                margin-right: 16px;
+            }
+            .mat-stroked-button{
+                border: 1px solid $main-color;
+            }
+        }
+    }
+}
+.posts{
+    padding: 32px;
+}

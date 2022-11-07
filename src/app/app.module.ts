@@ -10,12 +10,18 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage'
 import { IndexComponent } from './feed/index/index.component';
 import { AuthModule } from './auth/auth.module';
+import { SettingsComponent } from './settings/settings.component';
+import { SearchComponent } from './search/search.component';
+import { from } from 'rxjs';
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
+    SettingsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +33,7 @@ import { AuthModule } from './auth/auth.module';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]

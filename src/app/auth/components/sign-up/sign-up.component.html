@@ -1,28 +1,30 @@
-<mat-card class="sign_up">
+<mat-card *ngIf="!isLoading" class="sign_up">
     <mat-card-header class="sign_up_title">
         <mat-card-title>Registry In Poetry</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <form class="sign_up_form" [formGroup]="signUpForm" (submit)="onSubmit()">
             <mat-form-field class="half-width sign_up_form_input_field">
-              <mat-label>First Name *</mat-label>
-              <input formControlName="name" type="text" matInput placeholder="Name">
+              <mat-label>First Name</mat-label>
+              <input formControlName="name" type="text" matInput placeholder="ExName">
             </mat-form-field>
             <mat-form-field class="half-width sign_up_form_input_field surname">
-                <mat-label>Last Name *</mat-label>
-                <input formControlName="surname" type="text" matInput placeholder="Last Name">
+                <mat-label>Last Name</mat-label>
+                <input formControlName="surname" type="text" matInput placeholder="ExSurname">
             </mat-form-field>
             <mat-form-field class="full-width sign_up_form_input_field">
-                <mat-label>Email *</mat-label>
+                <mat-label>Email</mat-label>
                 <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
               </mat-form-field>
             <mat-form-field class="full-width sign_up_form_input_field">
-                <mat-label>Password *</mat-label>
+                <mat-label>Password</mat-label>
                 <input formControlName="password" type="password" matInput>
             </mat-form-field>
             <div class="sign_up_form_actions">
-                <button mat-flat-button color="primary">Sign Up</button>
+                <button (click)="goBack()" type="button" mat-button color="primary">Back</button>
+                <button [disabled]="signUpForm.invalid" mat-flat-button color="primary">Sign Up</button>
             </div>
         </form>
     </mat-card-content>
 </mat-card>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

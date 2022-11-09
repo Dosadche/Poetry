@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './auth/components/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
-import { IndexComponent } from './feed/index/index.component';
+import { IndexComponent } from './feed/components/index/index.component';
 import { SearchComponent } from './search/search.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';

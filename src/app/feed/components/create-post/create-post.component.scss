@@ -1,0 +1,40 @@
+@import '../../../../assets/styles/variables.scss';
+// #292929
+.create-post-card{
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    background-color: $poetry-light-grey;
+    color: white;
+    &__header{
+        mat-card-title{
+            font-weight: 400;
+        }
+    }
+    &__form-wrapper{
+        form{
+            ::ng-deep{
+                .mat-form-field-appearance-legacy{
+                    .mat-form-field-underline{
+                        display: none;
+                    }
+                    .mat-form-field-wrapper{
+                        padding-bottom: 0;
+                    }
+                }
+                .mat-form-field-label-wrapper{
+                    margin: 16px;
+                    margin-top: 0;
+                }
+            }
+            mat-form-field{
+                width: 100%;
+                background-color: #424242;
+                textarea{
+                    margin: 16px;
+                    min-height: 70px;
+                }
+            }
+        }
+    }
+}

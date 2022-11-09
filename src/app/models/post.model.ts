@@ -1,7 +1,6 @@
 import { DbEntity } from "./db-entity.model";
 
 export class Post extends DbEntity{
-    //Post: id, createdAt, name, photoUrl, text, userId
     name: string
     userId: string
     photoUrl?: string

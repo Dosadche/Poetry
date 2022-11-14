@@ -36,6 +36,19 @@
                     color: #939191;
                 }
             }
+            .form-actions{
+                margin-top: 16px;
+                display: flex;
+                justify-content: space-between;
+                height: 45px;
+                button{
+                    border-radius: 16px;
+                    width: 120px;
+                    &.upload-btn{
+                        border: 1px solid $secondary-color;
+                    }
+                }
+            }
         }
     }
 }

@@ -11,19 +11,15 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage'
-import { IndexComponent } from './feed/components/index/index.component';
 import { AuthModule } from './auth/auth.module';
 import { SettingsComponent } from './settings/settings.component';
 import { SearchComponent } from './search/search.component';
-import { from } from 'rxjs';
-import { CreatePostComponent } from './feed/components/create-post/create-post.component';
+import { FeedModule } from './feed/feed.module';
 @NgModule({
   declarations: [
     AppComponent,
-    IndexComponent,
     SettingsComponent,
     SearchComponent,
-    CreatePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +28,7 @@ import { CreatePostComponent } from './feed/components/create-post/create-post.c
     MaterialModule,
     SharedModule,
     AuthModule,
+    FeedModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),

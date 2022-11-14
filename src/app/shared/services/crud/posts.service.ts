@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { User } from 'src/app/models/user.model';
+import { Post } from 'src/app/models/post.model';
 import { CrudService } from './crud.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserServiceService extends CrudService<User>{
-  collectionName = 'users'
+export class PostsService extends CrudService<Post>{
+  collectionName = 'posts';
   constructor(firestore: Firestore) {
     super(firestore);
   }

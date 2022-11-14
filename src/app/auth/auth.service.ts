@@ -3,7 +3,7 @@ import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { User } from '../models/user.model';
-import { UserServiceService } from '../shared/services/crud/user-service.service';
+import { UsersService } from '../shared/services/crud/users.service';
 import { DialogService } from '../shared/services/dialog.service';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { DialogService } from '../shared/services/dialog.service';
 })
 export class AuthService {
 
-  constructor(private usersService: UserServiceService,
+  constructor(private usersService: UsersService,
               private auth: Auth,
               private router: Router,
               private dialogService: DialogService) { }

@@ -3,11 +3,15 @@
         <mat-card-title>Make new post</mat-card-title>
     </mat-card-header>
     <mat-card-content class="create-post-card__form-wrapper">
-        <form>
+        <form [formGroup]="postForm" (submit)="onSubmit()">
             <mat-form-field appearance="fill">
                 <mat-label>Your post text ...</mat-label>
-                <textarea matInput></textarea>
+                <textarea matInput formControlName="content"></textarea>
             </mat-form-field>
+            <div class="form-actions">
+                <button class="upload-btn" type="button" mat-stroked-button color="accent">Upload image</button>
+                <button class="submit-btn" mat-flat-button color="primary">Post !</button>
+            </div>
         </form>
     </mat-card-content>
 </mat-card>

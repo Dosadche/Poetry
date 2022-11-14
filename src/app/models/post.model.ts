@@ -1,15 +1,14 @@
 import { DbEntity } from "./db-entity.model";
 
 export class Post extends DbEntity{
-    name: string
-    userId: string
+    createdBy: string
     photoUrl?: string
     content: string
 
-    constructor(post: Post){
+    constructor(post: Partial<Post>){
         super()
-        this.name = post.name
-        this.userId = post.userId
+        this.createdBy = post.createdBy
+        this.photoUrl = post.photoUrl || ''
         this.content = post.content
     }
   }

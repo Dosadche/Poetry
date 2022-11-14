@@ -5,6 +5,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { LogOutDialogComponent } from './components/log-out-dialog/log-out-dialog.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
-  exports: [MaterialModule, RouterModule],
+  exports: [MaterialModule, RouterModule, ReactiveFormsModule],
   providers: []
 })
 export class SharedModule { }

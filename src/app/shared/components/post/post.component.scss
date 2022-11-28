@@ -1,0 +1,15 @@
+.post-wrapper{
+    width: 900px;
+    border-radius: 16px;
+    margin-top: 16px;
+    mat-card-header{
+        h2{
+            margin: 0;
+        }
+        ::ng-deep{
+            .mat-card-header-text{
+                margin: 0;
+            }
+        }
+    }
+}

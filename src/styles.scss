@@ -6,9 +6,17 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background-color: $poetry-light-grey;
-    color: white;}
+    color: white;
+}
+.avatar{
+    height: 48px;
+}
 .full-width{
     width: 100%;
+}
+.mat-card{
+    background: $poetry-light-grey;
+    color: white;
 }
 form{
     .mat-form-field-appearance-legacy .mat-form-field-label{

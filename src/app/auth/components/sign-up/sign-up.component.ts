@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from '../../auth.service';
 
@@ -11,11 +11,11 @@ import { AuthService } from '../../auth.service';
 })
 export class SignUpComponent implements OnInit {
   isLoading = false
-  signUpForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    surname: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required)
+  signUpForm = new UntypedFormGroup({
+    name: new UntypedFormControl('', Validators.required),
+    surname: new UntypedFormControl('', Validators.required),
+    email: new UntypedFormControl('', [Validators.required, Validators.email]),
+    password: new UntypedFormControl('', Validators.required)
   })
 
   constructor(private authService: AuthService,

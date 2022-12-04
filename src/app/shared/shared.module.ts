@@ -7,6 +7,7 @@ import { LogOutDialogComponent } from './components/log-out-dialog/log-out-dialo
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './components/post/post.component';
+import { PostsListComponent } from './components/posts-list/posts-list.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,8 @@ import { PostComponent } from './components/post/post.component';
     LogOutDialogComponent,
     ConfirmDialogComponent,
     PostComponent,
+    PostsListComponent,
+    PostsListComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,7 @@ import { PostComponent } from './components/post/post.component';
     RouterModule,
     ReactiveFormsModule
   ],
-  exports: [MaterialModule, RouterModule, ReactiveFormsModule, PostComponent],
+  exports: [MaterialModule, RouterModule, ReactiveFormsModule, PostComponent, PostsListComponent],
   providers: []
 })
 export class SharedModule { }

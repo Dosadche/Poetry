@@ -4,13 +4,18 @@
         <h2 class="profile_user_data_name">{{currentUser.name}} {{currentUser.surname}}</h2>
         <div class="profile_user_data_actions">
             <button mat-stroked-button color="primary" class="profile_user_data_edit">Edit profile</button>
-            <button mat-flat-button color="primary" class="profile_user_data_upload"
-            >Upload avatar</button>
-            <!-- <input #inputFile type="file" class="input-file"
-            (change)="chooseFile($event)" /> -->
+            <button 
+                mat-flat-button 
+                color="primary" 
+                class="profile_user_data_upload"
+                (click)="addData()">
+                Upload avatar
+            </button>
+            <input #inputFile type="file" class="input-file"
+            (change)="uploadPhotoService.chooseFile($event)" />
         </div>
     </div>
 </section>
 <section class="posts">
-    <p>You have no posts yet :(</p>
+    <app-my-posts-list></app-my-posts-list>
 </section>

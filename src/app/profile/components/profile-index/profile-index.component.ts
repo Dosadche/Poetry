@@ -1,7 +1,6 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-import { ref, Storage } from '@angular/fire/storage';
-import { getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service';
 
 @Component({
   selector: 'app-profile-index',
@@ -13,27 +12,13 @@ export class ProfileIndexComponent implements OnInit {
   file: any
   fileName: string;
 
-  constructor(private storage: Storage) { }
+  constructor(public uploadPhotoService: UploadPhotoService) { }
 
   ngOnInit(): void {
   }
 
-  public chooseFile(event: any): void {
-    this.file = event.target.files;
-  }
-  private addData(){
-    const storageRef = ref(this.storage, this.file.name)
-    const uploadTask = uploadBytesResumable(storageRef, this.file)
-    uploadTask.on('state_changed',
-    (snapshot) => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes)
-      console.log(progress,'%')
-    },
-    () => {
-      getDownloadURL(uploadTask.snapshot.ref)
-      .then(downloadUrl => {
-        console.log(downloadUrl)
-      })
-    })
+  addData(){
+    this.uploadPhotoService.addData()
+    .subscribe(res => console.log(res))
   }
 }

@@ -3,8 +3,16 @@
     border-radius: 16px;
     margin-top: 16px;
     mat-card-header{
-        h2{
-            margin: 0;
+        margin-bottom: 8px;
+        .cred{
+            margin-left: 16px;
+            h2{
+                height: 28px;
+                margin: 0;
+            }
+            small{
+                color: #b7b7b7;
+            }
         }
         ::ng-deep{
             .mat-card-header-text{

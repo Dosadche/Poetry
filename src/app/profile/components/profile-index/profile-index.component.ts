@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user.model';
 import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service';
+import { UploadAvatarComponent } from '../upload-avatar/upload-avatar.component';
 
 @Component({
   selector: 'app-profile-index',
@@ -9,16 +11,14 @@ import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service
 })
 export class ProfileIndexComponent implements OnInit {
   public currentUser: User = JSON.parse(localStorage.getItem('user'))
-  file: any
-  fileName: string;
 
-  constructor(public uploadPhotoService: UploadPhotoService) { }
+  constructor(public uploadPhotoService: UploadPhotoService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  addData(){
-    this.uploadPhotoService.addData()
-    .subscribe(res => console.log(res))
+  openUploadPhotoModal(): void {
+    this.dialog.open(UploadAvatarComponent)
   }
 }

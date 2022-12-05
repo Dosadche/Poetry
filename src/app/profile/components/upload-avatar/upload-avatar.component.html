@@ -1,0 +1,19 @@
+<div class="dialog-wrapper">
+    <h2 mat-dialog-title>Upload avatar</h2>
+    <div mat-dialog-content>
+        <div class="photo-container">
+            <div class="dark-effect" (click)="uploadIleService.chooseFile($event)">
+                <button mat-stroked-button color="accent">
+                    Choose photo
+                </button>
+            </div>
+        </div>
+        <!-- <input type="file" class="input-file"
+            (change)="uploadIleService.chooseFile($event)" /> -->
+    </div>
+    <div mat-dialog-actions>
+        <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+        <button mat-flat-button color="primary" mat-dialog-close>Upload</button>
+    </div>
+</div>
+

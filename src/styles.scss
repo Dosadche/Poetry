@@ -26,6 +26,32 @@ form{
         background-color: rgba($main-color, 0.4)
     }
 }
+.mat-dialog-container{
+    background: linear-gradient(246.73deg, #292929 4.19%, #434343 100%);
+    color: white;
+    padding: 32px;
+    .mat-dialog-title{
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .mat-dialog-content{
+        font-size: 16px;
+    }
+    .mat-dialog-actions{
+        padding: 16px 0;
+        display: flex;
+        justify-content: flex-end;
+        button{
+            width: 88px;
+            font-size: 16px;
+            border-radius: 16px;
+            margin-left: 16px;
+        }
+        .mat-stroked-button{
+            border: 1px solid $main-color;
+        }
+    }
+}
 mat-spinner{
     border-radius: 50%;
     top: 25%;

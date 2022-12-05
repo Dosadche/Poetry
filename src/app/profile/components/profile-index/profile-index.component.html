@@ -8,11 +8,11 @@
                 mat-flat-button 
                 color="primary" 
                 class="profile_user_data_upload"
-                (click)="addData()">
+                (click)="openUploadPhotoModal()">
                 Upload avatar
             </button>
-            <input #inputFile type="file" class="input-file"
-            (change)="uploadPhotoService.chooseFile($event)" />
+            <!-- <input #inputFile type="file" class="input-file"
+            (change)="uploadPhotoService.chooseFile($event)" /> -->
         </div>
     </div>
 </section>

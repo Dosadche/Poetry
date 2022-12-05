@@ -15,8 +15,8 @@ export class UploadPhotoService {
   public chooseFile(event): void {
     this.file = event.target.files;
   }
-  public addData(): Observable<string> {
-    const storageRef = ref(this.storage, 'avatars/'+this.file[0].name)
+  public addData(folderName: string): Observable<string> {
+    const storageRef = ref(this.storage, `${folderName}/${this.file[0].name}`)
     const uploadTask = fromTask(uploadBytesResumable(storageRef, this.file[0]))
     const downloadUrlObservable = uploadTask.pipe(
       take(1),

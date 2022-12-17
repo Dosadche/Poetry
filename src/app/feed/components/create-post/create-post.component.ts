@@ -27,11 +27,8 @@ export class CreatePostComponent implements OnInit {
       createdBy: this.currentUser.id,
     })
     this.postsService.create(newPost)
-    .then(() => {
-      console.log('succsess')
-    })
     .catch((err) => {
-      console.log(err)
+      window.alert(err)
     })
   }
 }

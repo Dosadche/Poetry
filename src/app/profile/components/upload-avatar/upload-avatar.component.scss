@@ -1,17 +1,31 @@
 @import "../../../../assets/styles/variables.scss";
 .dialog-wrapper{
     .photo-container{
+        position: relative;
         width: 350px;
         height: 250px;
+        overflow: hidden;
         background-image: url('../../../../assets/images/upload_photo_template.svg');
         background-size: cover;
+        &__photo{
+            width: 100%;
+            position: absolute;
+        }
         .dark-effect{
             width: 100%;
             height: 100%;
+            position: relative;
             display: flex;
             align-content: center;
             justify-content: center;
             flex-wrap: wrap;
+        }
+        input{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
         }
         button{
             opacity: 0;
@@ -31,5 +45,8 @@
                 opacity: 100%;
             }
         }
+    }
+    ::ng-deep .mat-flat-button.mat-primary.mat-button-disabled{
+        background-color: rgba($color: $main-color, $alpha: 0.5);
     }
 }

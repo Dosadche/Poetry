@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { finalize } from 'rxjs';
 import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service';
 
 @Component({
@@ -26,16 +27,18 @@ export class UploadAvatarComponent implements OnInit{
   uploadPhoto(): void {
     this.isLoading = true
     this.uploadService.addData('avatars')
-    .subscribe({
-      next: ((downloadUrl: string) => {
-        this.dialog.close(downloadUrl)
-      }),
-      error: (() => {
-        window.alert('Something went wrong, please, try again')
-      }),
-      complete: (() => {
+    .pipe(
+      finalize(() => {
         this.isLoading = false
       })
+    )
+    .subscribe({
+      next: (downloadUrl: string) => {
+        this.dialog.close(downloadUrl)
+      },
+      error: () => {
+        window.alert('Oops! Something went wrong, please try again😟')
+      }
     })
   }
 }

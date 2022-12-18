@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Post } from 'src/app/models/post.model';
 
 @Component({
@@ -6,10 +6,20 @@ import { Post } from 'src/app/models/post.model';
   templateUrl: './posts-list.component.html',
   styleUrls: ['./posts-list.component.scss']
 })
-export class PostsListComponent implements OnInit{
+export class PostsListComponent implements OnInit, OnChanges{
   @Input() posts: Post[]
   
   constructor() { }
-  ngOnInit(): void {
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.posts.currentValue){
+      this.posts = this.sortedPosts
+    }
+  }
+
+  ngOnInit(): void { }
+
+  get sortedPosts(): Post[] {
+    return this.posts.sort((a, b) => a.createdAt['nanoseconds'] - b.createdAt['nanoseconds'])
   }
 }

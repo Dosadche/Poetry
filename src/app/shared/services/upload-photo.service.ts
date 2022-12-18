@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { fromTask, ref, Storage } from '@angular/fire/storage';
-import { getDownloadURL, uploadBytesResumable } from 'firebase/storage';
-import { from, fromEvent, map, Observable, switchMap, take } from 'rxjs';
+import { on } from 'events';
+import { getDownloadURL, uploadBytesResumable, UploadMetadata, UploadResult, UploadTask, UploadTaskSnapshot } from 'firebase/storage';
+import { from, fromEvent, map, Observable, of, Subject, switchMap, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,20 @@ export class UploadPhotoService {
     return fromEvent(fileReader, 'load').pipe(map(res => res.target['result']))
   }
   
-  public addData(folderName: string): Observable<string> {
+  public addData(folderName: string): any{
     const storageRef = ref(this.storage, `${folderName}/${this.file[0].name}`)
-    const uploadTask = fromTask(uploadBytesResumable(storageRef, this.file[0]))
-    const downloadUrlObservable = uploadTask.pipe(
+    const uploadedSubject: Subject<UploadTask> = new Subject<UploadTask>()
+    const uploadTask: UploadTask = uploadBytesResumable(storageRef, this.file[0])
+    uploadTask.on('state_changed', {
+      complete: () => {
+        uploadedSubject.next(uploadTask.snapshot.task)
+      }
+    })
+    const downloadUrlObservable = uploadedSubject.pipe(
       take(1),
-      switchMap(task => from(getDownloadURL(task.ref))))
+      switchMap((task: UploadTask) => {
+        return from(getDownloadURL(task['_ref']))
+      }))
     return downloadUrlObservable
   }
 }

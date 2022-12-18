@@ -26,7 +26,9 @@ export class ProfileIndexComponent implements OnInit {
     this.dialog.open(UploadAvatarComponent)
     .afterClosed()
     .subscribe((imageUrl: string) => {
-      this.updateProfileAvatar(imageUrl)
+      if(imageUrl){
+        this.updateProfileAvatar(imageUrl)
+      }
     })
   }
 

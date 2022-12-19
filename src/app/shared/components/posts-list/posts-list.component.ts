@@ -14,12 +14,13 @@ export class PostsListComponent implements OnInit, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.posts.currentValue){
       this.posts = this.sortedPosts
+      console.log(this.sortedPosts)
     }
   }
 
   ngOnInit(): void { }
 
   get sortedPosts(): Post[] {
-    return this.posts.sort((a, b) => a.createdAt['nanoseconds'] - b.createdAt['nanoseconds'])
+    return this.posts.sort((a, b) => b.createdAt['seconds'] - a.createdAt['seconds'])
   }
 }

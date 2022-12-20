@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user.model';
 import { UsersService } from 'src/app/shared/services/crud/users.service';
 import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service';
-import { UploadAvatarComponent } from '../upload-avatar/upload-avatar.component';
+import { UploadPhotoComponent } from '../../../shared/components/upload-photo/upload-photo.component';
 
 @Component({
   selector: 'app-profile-index',
@@ -23,7 +23,7 @@ export class ProfileIndexComponent implements OnInit {
   }
 
   openUploadPhotoModal(): void {
-    this.dialog.open(UploadAvatarComponent)
+    this.dialog.open(UploadPhotoComponent, {data: {folderName: 'avatars'}})
     .afterClosed()
     .subscribe((imageUrl: string) => {
       if(imageUrl){

@@ -3,6 +3,8 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Post } from 'src/app/models/post.model';
 import { User } from 'src/app/models/user.model';
 import { PostsService } from 'src/app/shared/services/crud/posts.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service';
 
 @Component({
   selector: 'app-create-post',
@@ -14,13 +16,15 @@ export class CreatePostComponent implements OnInit {
     content: new UntypedFormControl(''),
     photoUrl: new UntypedFormControl('')
   })
+  previewPhotoUrl: string 
   private currentUser: User = JSON.parse(localStorage.getItem('user'));
-  constructor(private postsService: PostsService) { }
+  constructor(private postsService: PostsService,
+              private uploadPhotoService: UploadPhotoService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit(): void {
     const newPost: Post = new Post({
       content: this.postForm.value.content,
       photoUrl: this.postForm.value.photoUrl,
@@ -30,5 +34,10 @@ export class CreatePostComponent implements OnInit {
     .catch((err) => {
       window.alert(err)
     })
+  }
+
+  chooseFile(event): void {
+    this.uploadPhotoService.chooseFile(event)
+    .subscribe((previewPhotoUrl: string) => this.previewPhotoUrl = previewPhotoUrl)
   }
 }

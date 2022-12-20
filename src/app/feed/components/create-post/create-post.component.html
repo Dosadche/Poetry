@@ -8,9 +8,32 @@
                 <mat-label>Your post text ...</mat-label>
                 <textarea matInput formControlName="content"></textarea>
             </mat-form-field>
+            <div 
+                class="image-wrapper" 
+                *ngIf="previewPhotoUrl" 
+                style="background-image: url({{previewPhotoUrl}});"
+                ><div class="blur-layout">
+                    <img [src]="previewPhotoUrl">
+                </div>
+            </div>
             <div class="form-actions">
-                <button class="upload-btn" type="button" mat-stroked-button color="accent">Upload image</button>
-                <button class="submit-btn" mat-flat-button color="primary">Post !</button>
+                <div class="upload-btn-container">
+                    <button 
+                        class="upload-btn" 
+                        type="button" 
+                        mat-stroked-button 
+                        color="accent"
+                        >Upload image
+                    </button>
+                    <input type="file" class="input-file"
+                        (change)="chooseFile($event)"/>
+                </div>
+                <button 
+                    class="submit-btn" 
+                    mat-flat-button 
+                    color="primary"
+                    >Post
+                </button>
             </div>
         </form>
     </mat-card-content>

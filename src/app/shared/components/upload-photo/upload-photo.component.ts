@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { finalize } from 'rxjs';
 import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service';
 
 @Component({
   selector: 'app-upload-avatar',
-  templateUrl: './upload-avatar.component.html',
-  styleUrls: ['./upload-avatar.component.scss']
+  templateUrl: './upload-photo.component.html',
+  styleUrls: ['./upload-photo.component.scss']
 })
-export class UploadAvatarComponent implements OnInit{
+export class UploadPhotoComponent implements OnInit{
   isLoading: boolean = false
   choosedPhotoUrl: string
   constructor(private uploadService: UploadPhotoService,
-              private dialog: MatDialogRef<UploadAvatarComponent>) { }
+              private dialog: MatDialogRef<UploadPhotoComponent>,
+              @Inject(MAT_DIALOG_DATA) private data) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   chooseFile(event): void {
     this.uploadService.chooseFile(event)
@@ -26,7 +26,7 @@ export class UploadAvatarComponent implements OnInit{
 
   uploadPhoto(): void {
     this.isLoading = true
-    this.uploadService.addData('avatars')
+    this.uploadService.addData(this.data.folderName)
     .pipe(
       finalize(() => {
         this.isLoading = false

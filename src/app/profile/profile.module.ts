@@ -5,14 +5,14 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileIndexComponent } from './components/profile-index/profile-index.component';
 import { SharedModule } from '../shared/shared.module';
 import { MyPostsListComponent } from './components/my-posts-list/my-posts-list.component';
-import { UploadAvatarComponent } from './components/upload-avatar/upload-avatar.component';
+import { UploadPhotoComponent } from '../shared/components/upload-photo/upload-photo.component';
 
 
 @NgModule({
   declarations: [
     ProfileIndexComponent,
     MyPostsListComponent,
-    UploadAvatarComponent
+    UploadPhotoComponent
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,6 @@ export class PostsListComponent implements OnInit, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.posts.currentValue){
       this.posts = this.sortedPosts
-      console.log(this.sortedPosts)
     }
   }
 

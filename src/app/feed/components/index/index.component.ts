@@ -9,11 +9,16 @@ import { PostsService } from 'src/app/shared/services/crud/posts.service';
 })
 export class IndexComponent implements OnInit {
   posts: Post[]
+  isLoading: boolean = false
 
   constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
     this.getPosts()
+  }
+
+  handleLoading(event): void {
+    this.isLoading = event
   }
 
   private getPosts(): void {
@@ -22,5 +27,4 @@ export class IndexComponent implements OnInit {
       this.posts = posts
     })
   }
-
 }

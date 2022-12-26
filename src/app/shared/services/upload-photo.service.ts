@@ -20,7 +20,7 @@ export class UploadPhotoService {
     return fromEvent(fileReader, 'load').pipe(map(res => res.target['result']))
   }
   
-  public addData(folderName: string): any{
+  public addData(folderName: string): Observable<string>{
     const storageRef = ref(this.storage, `${folderName}/${this.file[0].name}`)
     const uploadedSubject: Subject<UploadTask> = new Subject<UploadTask>()
     const uploadTask: UploadTask = uploadBytesResumable(storageRef, this.file[0])

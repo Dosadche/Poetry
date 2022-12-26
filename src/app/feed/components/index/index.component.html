@@ -1,4 +1,13 @@
 <section>
-    <app-create-post></app-create-post>
-    <app-posts-list [posts]="posts"></app-posts-list>
+    <app-create-post
+    [hidden]="isLoading"
+    (isLoading)="handleLoading($event)"></app-create-post>
+    <app-posts-list 
+        [posts]="posts"
+        *ngIf="!isLoading"
+    ></app-posts-list>
+    <mat-spinner 
+        *ngIf="isLoading"
+        color="accent" 
+    ></mat-spinner>
 </section>

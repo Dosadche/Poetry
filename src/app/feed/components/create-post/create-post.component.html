@@ -3,7 +3,7 @@
         <mat-card-title>Make new post</mat-card-title>
     </mat-card-header>
     <mat-card-content class="create-post-card__form-wrapper">
-        <form [formGroup]="postForm" (submit)="onSubmit()">
+        <form [formGroup]="postForm" (submit)="post()">
             <mat-form-field appearance="fill">
                 <mat-label>Your post text ...</mat-label>
                 <textarea matInput formControlName="content"></textarea>

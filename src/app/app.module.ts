@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +14,8 @@ import { AuthModule } from './auth/auth.module';
 import { SettingsComponent } from './settings/settings.component';
 import { SearchComponent } from './search/search.component';
 import { FeedModule } from './feed/feed.module';
+import { BrowserModule } from '@angular/platform-browser';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +24,8 @@ import { FeedModule } from './feed/feed.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     MaterialModule,
     SharedModule,
     AuthModule,

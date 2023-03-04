@@ -23,15 +23,14 @@ export class AuthService {
       tap((createdUser: User) => this.navigateToProfile(createdUser)))
   }
 
-  handleLogin(email: string, password: string): void {
-    signInWithEmailAndPassword(this.auth, email, password)
-    .then(() => this.getUserAfterLogin(email))
+  handleLogin(email: string, password: string): Observable<User> {
+    return from(signInWithEmailAndPassword(this.auth, email, password))
+    .pipe(switchMap(() => this.getUserAfterLogin(email)))
   }
 
-  private getUserAfterLogin(email: string): void {
-    this.usersService.getByField('email', email, true)
-    .pipe(take(1))
-    .subscribe((user: User) => this.navigateToProfile(user))
+  private getUserAfterLogin(email: string): Observable<User> {
+    return this.usersService.getByField('email', email, true)
+    .pipe(tap((user: User) => this.navigateToProfile(user)))
   }
 
   private navigateToProfile(user: User): void {

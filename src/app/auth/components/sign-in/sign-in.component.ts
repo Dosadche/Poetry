@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { finalize, take } from 'rxjs';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class SignInComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.authService.handleLogin(this.signInForm.value.email, this.signInForm.value.password)
     this.isLoading = true
+    this.authService.handleLogin(this.signInForm.value.email, this.signInForm.value.password)
+    .pipe(take(1), finalize(() => this.isLoading = false)).subscribe()
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { take } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { UsersService } from 'src/app/shared/services/crud/users.service';
 import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service';
@@ -25,6 +26,7 @@ export class ProfileIndexComponent implements OnInit {
   openUploadPhotoModal(): void {
     this.dialog.open(UploadPhotoComponent, {data: {folderName: 'avatars'}})
     .afterClosed()
+    .pipe(take(1))
     .subscribe((imageUrl: string) => {
       if(imageUrl){
         this.updateProfileAvatar(imageUrl)

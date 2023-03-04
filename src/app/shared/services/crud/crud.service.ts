@@ -18,7 +18,7 @@ export abstract class CrudService<T extends DbEntity>{
   }
 
   public create(doc: T): Promise<DocumentReference<DocumentData>> {
-      return addDoc(this.collectionRef, { ...doc })
+    return addDoc(this.collectionRef, { ...doc })
   }
 
   public read(): Observable<any[] | null> {

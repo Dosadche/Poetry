@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { from, Observable, switchMap, take, tap } from 'rxjs';
 import { User } from '../models/user.model';
 import { UsersService } from '../shared/services/crud/users.service';
-import { DialogService } from '../shared/services/dialog.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,36 +13,28 @@ export class AuthService {
 
   constructor(private usersService: UsersService,
               private auth: Auth,
-              private router: Router,
-              private dialogService: DialogService) { }
+              private router: Router) { }
 
-  public handleRegister(user: User){
-    createUserWithEmailAndPassword(this.auth, user.email, user.password)
-    .then(() => {
-      this.usersService.create(user)
-      return user
-    })
-    .then((user: User) => this.navigateToProfile(user))
-    .catch(() => {
-      this.dialogService.openConfirmDialog('Oops :(', 'Looks like something went wrong. Maybe you should try another email.')
-    })
+  handleRegister(user: User): Observable<User> {
+    return from(createUserWithEmailAndPassword(this.auth, user.email, user.password))
+    .pipe(
+      switchMap(() => this.usersService.create(user)),
+      switchMap(() => this.usersService.getByField('email', user.email, true)),
+      tap((createdUser: User) => this.navigateToProfile(createdUser)))
   }
 
-  public handleLogin(email: string, password: string){
+  handleLogin(email: string, password: string): void {
     signInWithEmailAndPassword(this.auth, email, password)
-    .then(() => {
-      this.getUserAfterLogin(email)
-    })
+    .then(() => this.getUserAfterLogin(email))
   }
 
-  private getUserAfterLogin(email: string){
+  private getUserAfterLogin(email: string): void {
     this.usersService.getByField('email', email, true)
-    .subscribe((user: User) => {
-      this.navigateToProfile(user)
-    })
+    .pipe(take(1))
+    .subscribe((user: User) => this.navigateToProfile(user))
   }
 
-  private navigateToProfile(user: User){
+  private navigateToProfile(user: User): void {
     localStorage.setItem('user', JSON.stringify(user))
     this.router.navigate(['/profile'])
   }

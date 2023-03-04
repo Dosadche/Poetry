@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from '../../auth.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -26,7 +27,7 @@ export class SignUpComponent implements OnInit {
   onSubmit(){
     this.isLoading = true
     const newUser = new User(this.signUpForm.value)
-    this.authService.handleRegister(newUser)
+    this.authService.handleRegister(newUser) .pipe(take(1)).subscribe()
   }
 
   goBack(){

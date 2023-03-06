@@ -1,20 +1,23 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, takeUntil } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { UsersService } from '../../services/crud/users.service';
+import { UnsubscriberComponent } from '../unsubscriber/unsubscriber.component';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit, OnDestroy {
+export class NavBarComponent extends UnsubscriberComponent implements OnInit, OnDestroy {
   public currentUser: User
   private observable: Subscription
 
   constructor(private router: Router,
-              private usersService: UsersService) { }
+              private usersService: UsersService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.initializeUser()
@@ -31,6 +34,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   private subscribeOnUserChanges(): void {
     this.observable = this.usersService.userChanges
+    .pipe(takeUntil(this.$destroy))
     .subscribe(() => {
       this.initializeUser()
     })

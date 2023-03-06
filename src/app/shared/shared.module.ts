@@ -8,6 +8,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './components/post/post.component';
 import { PostsListComponent } from './components/posts-list/posts-list.component';
+import { UnsubscriberComponent } from './components/unsubscriber/unsubscriber.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PostsListComponent } from './components/posts-list/posts-list.component
     ConfirmDialogComponent,
     PostComponent,
     PostsListComponent,
-    PostsListComponent
+    PostsListComponent,
+    UnsubscriberComponent
   ],
   imports: [
     CommonModule,

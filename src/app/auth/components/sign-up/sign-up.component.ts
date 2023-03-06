@@ -3,14 +3,15 @@ import { Location } from '@angular/common';
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from '../../auth.service';
-import { finalize, take } from 'rxjs';
+import { finalize, take, takeUntil } from 'rxjs';
+import { UnsubscriberComponent } from 'src/app/shared/components/unsubscriber/unsubscriber.component';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent extends UnsubscriberComponent implements OnInit {
   isLoading = false
   signUpForm = new UntypedFormGroup({
     name: new UntypedFormControl('', Validators.required),
@@ -20,18 +21,23 @@ export class SignUpComponent implements OnInit {
   })
 
   constructor(private authService: AuthService,
-              private _location: Location) { }
+              private _location: Location) {
+    super()
+  }
 
   ngOnInit(): void {}
 
-  onSubmit(){
+  onSubmit(): void {
     this.isLoading = true
     const newUser = new User(this.signUpForm.value)
     this.authService.handleRegister(newUser) 
-    .pipe(take(1), finalize(() => this.isLoading = false)).subscribe()
+    .pipe(
+      takeUntil(this.$destroy), 
+      finalize(() => this.isLoading = false))
+    .subscribe()
   }
 
-  goBack(){
+  goBack(): void {
     this._location.back()
   }
 

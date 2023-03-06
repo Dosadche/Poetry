@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
+import { UnsubscriberComponent } from 'src/app/shared/components/unsubscriber/unsubscriber.component';
 import { PostsService } from 'src/app/shared/services/crud/posts.service';
 
 @Component({
@@ -7,11 +9,13 @@ import { PostsService } from 'src/app/shared/services/crud/posts.service';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent extends UnsubscriberComponent implements OnInit {
   posts: Post[]
   isLoading: boolean = false
 
-  constructor(private postsService: PostsService) { }
+  constructor(private postsService: PostsService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.getPosts()
@@ -23,6 +27,7 @@ export class IndexComponent implements OnInit {
 
   private getPosts(): void {
     this.postsService.getAll()
+    .pipe(takeUntil(this.$destroy))
     .subscribe((posts: Post[]) => {
       this.posts = posts
     })

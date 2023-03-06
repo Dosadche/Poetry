@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { take } from 'rxjs';
+import { take, takeUntil } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { UnsubscriberComponent } from 'src/app/shared/components/unsubscriber/unsubscriber.component';
 import { UsersService } from 'src/app/shared/services/crud/users.service';
 import { UploadPhotoService } from 'src/app/shared/services/upload-photo.service';
 import { UploadPhotoComponent } from '../../../shared/components/upload-photo/upload-photo.component';
@@ -11,13 +12,15 @@ import { UploadPhotoComponent } from '../../../shared/components/upload-photo/up
   templateUrl: './profile-index.component.html',
   styleUrls: ['./profile-index.component.scss']
 })
-export class ProfileIndexComponent implements OnInit {
+export class ProfileIndexComponent extends UnsubscriberComponent implements OnInit {
   isLoading: boolean = false
   currentUser: User
 
   constructor(public uploadPhotoService: UploadPhotoService,
               private dialog: MatDialog,
-              private usersService: UsersService) { }
+              private usersService: UsersService) {
+    super();
+  }
 
   ngOnInit(): void {
     this.initializeUser()
@@ -26,7 +29,7 @@ export class ProfileIndexComponent implements OnInit {
   openUploadPhotoModal(): void {
     this.dialog.open(UploadPhotoComponent, {data: {folderName: 'avatars'}})
     .afterClosed()
-    .pipe(take(1))
+    .pipe(takeUntil(this.$destroy))
     .subscribe((imageUrl: string) => {
       if(imageUrl){
         this.updateProfileAvatar(imageUrl)

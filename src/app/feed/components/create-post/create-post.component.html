@@ -8,14 +8,10 @@
                 <mat-label>Your post text ...</mat-label>
                 <textarea matInput formControlName="content"></textarea>
             </mat-form-field>
-            <div 
-                class="image-wrapper" 
+            <app-image
                 *ngIf="previewPhotoUrl" 
-                style="background-image: url({{previewPhotoUrl}});"
-                ><div class="blur-layout">
-                    <img [src]="previewPhotoUrl">
-                </div>
-            </div>
+                [previewPhotoUrl]="previewPhotoUrl"
+            ></app-image>
             <div class="form-actions">
                 <div class="upload-btn-container">
                     <button 

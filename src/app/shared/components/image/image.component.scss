@@ -1,0 +1,16 @@
+.image-wrapper, .blur-layout{
+    border-radius: 16px;
+}
+.image-wrapper{
+    margin-top: 16px;
+    overflow: hidden;
+    .blur-layout{
+        display: flex;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+        img{
+            height: 300px;
+            width: auto;
+        }
+    }
+}

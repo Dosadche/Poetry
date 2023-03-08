@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './components/post/post.component';
 import { PostsListComponent } from './components/posts-list/posts-list.component';
 import { UnsubscriberComponent } from './components/unsubscriber/unsubscriber.component';
+import { ImageComponent } from './components/image/image.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UnsubscriberComponent } from './components/unsubscriber/unsubscriber.co
     PostComponent,
     PostsListComponent,
     PostsListComponent,
-    UnsubscriberComponent
+    UnsubscriberComponent,
+    ImageComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,7 @@ import { UnsubscriberComponent } from './components/unsubscriber/unsubscriber.co
     RouterModule,
     ReactiveFormsModule
   ],
-  exports: [MaterialModule, RouterModule, ReactiveFormsModule, PostComponent, PostsListComponent],
+  exports: [MaterialModule, RouterModule, ReactiveFormsModule, PostComponent, PostsListComponent, ImageComponent],
   providers: []
 })
 export class SharedModule { }

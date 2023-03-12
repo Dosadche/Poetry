@@ -8,7 +8,9 @@ export class User extends DbEntity{
     password: string
     avatarUrl: string
     followingsIds: string[]
-
+    lowerCaseName: string
+    lowerCaseSurname: string
+    
     constructor(user: User){
         super()
         this.profileId = 0
@@ -18,5 +20,7 @@ export class User extends DbEntity{
         this.password = user.password
         this.avatarUrl = '../../assets/images/default-avatar.svg'
         this.followingsIds = []
+        this.lowerCaseName = user.name.toLowerCase()
+        this.lowerCaseSurname = user.surname.toLocaleLowerCase()
     }
   }

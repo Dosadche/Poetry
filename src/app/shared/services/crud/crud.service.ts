@@ -13,7 +13,7 @@ export abstract class CrudService<T extends DbEntity>{
 
   constructor(public firestore: Firestore) { }
 
-  private get collectionRef(): CollectionReference {
+  protected get collectionRef(): CollectionReference {
       return collection(this.firestore, this.collectionName)
   }
 

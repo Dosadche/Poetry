@@ -1,10 +1,19 @@
 <section class="search">
     <mat-form-field class="search--field">
         <mat-label>Search...</mat-label>
-        <input (input)="updateSearch($event)" #searchInput matInput>
+        <input [formControl]="myInput" matInput>
         <mat-icon class="search--field__icon" matSuffix>search</mat-icon>
     </mat-form-field>
     <div class="search--users-list">
-        
+        <ng-container *ngIf="usersList | async as users">
+            <div *ngFor="let user of users" class="search--users-list__item">
+                <div class="search--users-list__item__cred">
+                    <img [src]="user.avatarUrl">
+                    <span>{{user.name}} {{user.surname}}</span>
+                </div>
+                <button mat-stroked-button color="primary">Subscribe</button>
+            </div>
+        </ng-container>
     </div>
+    <mat-spinner *ngIf="loading"></mat-spinner>
 </section>

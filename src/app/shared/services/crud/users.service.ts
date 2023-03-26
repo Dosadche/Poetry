@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { collectionData, DocumentData, Firestore, orderBy, query, where } from '@angular/fire/firestore';
-import { combineLatest, filter, map, merge, Observable, Subject, switchMap } from 'rxjs';
+import { collectionData, Firestore, query, where } from '@angular/fire/firestore';
+import { debounceTime, map, Observable, Subject, tap } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { CrudService } from './crud.service';
 
@@ -17,20 +17,11 @@ export class UsersService extends CrudService<User>{
   getBySearchString(searchString: string): Observable<User[]> {
     searchString = searchString.toLowerCase()
     const docsRef = query(this.collectionRef,
-        where('lowerCaseName', '>=', searchString),
-        where('lowerCaseName', '<=', searchString + '\uf8ff'),
-        orderBy('lowerCaseName'))
-    const docsRef2 = query(this.collectionRef,
-        where('lowerCaseSurname', '>=', searchString), 
-        where('lowerCaseSurname', '<=', searchString + '\uf8ff'),
-        orderBy('lowerCaseSurname'))
-    const mergedRefs: Observable<DocumentData>[] = [
-        collectionData(docsRef,  { idField: 'id' }),
-        collectionData(docsRef2,  { idField: 'id' }),
-    ]
-    return merge(mergedRefs).pipe(
-        switchMap((lists) => lists),
-        filter((res) => !!res.length),
-        map((lists: User[]) => lists || undefined))
+        where('nameSurnameLC', '>=', searchString),
+        where('nameSurnameLC', '<=', searchString + '\uf8ff'))
+
+    return collectionData(docsRef, { idField: 'id' })
+        .pipe(
+          map((lists: any[]) => lists.length ? lists : null))
   }
 }

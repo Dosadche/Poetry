@@ -8,8 +8,7 @@ export class User extends DbEntity{
     password: string
     avatarUrl: string
     followingsIds: string[]
-    lowerCaseName: string
-    lowerCaseSurname: string
+    nameSurnameLC: string
     
     constructor(user: User){
         super()
@@ -20,7 +19,6 @@ export class User extends DbEntity{
         this.password = user.password
         this.avatarUrl = '../../assets/images/default-avatar.svg'
         this.followingsIds = []
-        this.lowerCaseName = user.name.toLowerCase()
-        this.lowerCaseSurname = user.surname.toLocaleLowerCase()
+        this.nameSurnameLC = `${user.name.toLocaleLowerCase()} ${user.surname.toLocaleLowerCase()}`
     }
   }

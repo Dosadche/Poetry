@@ -26,10 +26,12 @@ export class IndexComponent extends UnsubscriberComponent implements OnInit {
   }
 
   private getPosts(): void {
-    this.postsService.getAll()
+    this.isLoading = true
+    this.postsService.getSubscibedPosts()
     .pipe(takeUntil(this.$destroy))
     .subscribe((posts: Post[]) => {
       this.posts = posts
-    })
+      this.isLoading = false
+    }, () => this.isLoading = false)
   }
 }

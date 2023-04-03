@@ -60,3 +60,24 @@ mat-spinner{
     top: 25%;
     margin: auto;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $main-color;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $secondary-color;
+  }
+
+  .poetry-snackbar{
+    border-radius: 16px!important;
+    .mat-simple-snackbar{
+        font-size: 16px;
+    }
+  }

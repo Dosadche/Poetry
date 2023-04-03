@@ -11,7 +11,22 @@
                     <img [src]="user.avatarUrl">
                     <span>{{user.name}} {{user.surname}}</span>
                 </div>
-                <button mat-stroked-button color="primary">Subscribe</button>
+                <button 
+                    *ngIf="!currentUser.followingsIds.includes(user.id)"
+                    class="subscribe"
+                    (click)="handleSubscription(user.id)"
+                     mat-stroked-button 
+                     color="primary"
+                >Subscribe
+                </button>
+                <button 
+                    *ngIf="currentUser.followingsIds.includes(user.id)"
+                    class="unsubscribe"
+                    (click)="handleSubscription(user.id, true)"
+                     mat-stroked-button 
+                     color="accent"
+                >Unsubscribe
+                </button>
             </div>
         </ng-container>
     </div>

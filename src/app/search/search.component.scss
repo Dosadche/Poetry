@@ -66,6 +66,13 @@
                 margin-right: 22px;
                 border: 1px solid $main-color;
                 border-radius: 16px;
+                width: 110px;
+                &.subscribe{
+                    border: 1px solid $main-color;
+                }
+                &.unsubscribe{
+                    border: 1px solid $secondary-color;
+                }
             }
         }
     }
